@@ -37,6 +37,11 @@
   <h5>当前账户信息：</h5>
   <div id="props"></div>
   <div id="btns">
+  	<button id="btn_balances">获取账户余额</button><br/>
+		<div>账户余额:<span id="balances_data"></span></div>
+		<br/>
+    <br/>
+
     <button id="btn_pay">支付1XFF</button><br/><br/>
     <button id="btn_pathpay">路径支付1XFF</button><br/><br/>
     <button id="btn_sign">签名数据</button><br/>
@@ -45,6 +50,8 @@
     <div>签名后的结果:<span id="sign_result_data"></span></div>
     <br/>
     <br/>
+
+
     <button id="btn_signXDR">XDR签名</button><br/>
     <div>待签名的数据:<span id="signxdr_data"></span></div>
     <div>签名后的结果:<span id="signxdr_result_data"></span></div>
@@ -88,8 +95,22 @@
         },3000);
       }
 
+      function balances(){
+      	console.log('------------------调用查询余额功能-----------')
+      	FFW.balances(function(response){
+      		if(response.code === 'fail'){
+             console.log('error:' + response.message)  
+             alert('查询失败！'+response.message)
+           }else{
+             console.log('query for balances successfully')
+             $("#balances_data").text(JSON.stringify(response.data))
+             alert('查询余额成功')
+           }
+      	});
+      };
+
       function pay(){
-        console.log('-----调用支持功能----')
+        console.log('-----调用支付功能----')
         FFW.pay({
          destination: 'GBFGPA6MELXHEKWPJW75LOMC4CHGHTZ67LOWUGTUUILMXMZZGFLTO3X7', 
          code: 'XFF', 
