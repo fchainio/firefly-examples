@@ -55,7 +55,7 @@ FFWProxy.getAccountId().then(accountid=>{
   console.error(err)
 })
 或者
-FFWProxy.accountid
+FFWProxy.accountId
       </pre>
       <div slot="result">{{accountid}}</div>
     </code-section>
@@ -276,7 +276,7 @@ FFWProxy.share(options).then(data=>{
 
 <script>
 import CodeSection from './CodeSection'
-import { FireFlyWallet } from '../lib/fireflywallet';
+import { FireFlyWallet } from 'fireflywallet-api';
 const FFWProxy = new FireFlyWallet();
 
 export default {
