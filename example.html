@@ -89,6 +89,7 @@ window.FFW.balances(function(response){
     <br/>
 
     <button id="btn_pay" class="primary-btn">支付1XFF</button><br/>
+    <button id="btn_pay_id" class="primary-btn">支付1XFF(memo_type:text,内容为12345)</button><br/>
     <div class="code">
       <pre>
 FFW.pay({
@@ -256,6 +257,7 @@ window.FFW.trust(code,issuer,function(response){
       
       load()
       $('#btn_pay').click(pay)
+      $('#btn_pay_id').click(pay_id)
       $('#btn_pathpay').click(pathPay)
       $('#btn_sign').click(sign)
       $('#btn_signXDR').click(signXDR)
@@ -303,6 +305,26 @@ window.FFW.trust(code,issuer,function(response){
          amount: 1, 
          memo_type: 'TEXT', //取值见stellar的api文档
          memo: 'Hello,FFW'
+       }, function(response){
+           if(response.code === 'fail'){
+             console.log('error:' + response.message)  
+             alert('支付失败！'+response.message)
+           }else{
+             console.log('pay success')
+             alert('支付成功')
+           }
+       });
+      }
+      
+      function pay_id(){
+        console.log('-----调用支付功能----')
+        FFW.pay({
+         destination: 'GCKKUWHT3ILQWWKQ3MUOCAC7LRJNLCOES7SEI6TCQVGZD4GCULO2PGNU', 
+         code: 'XFF', 
+         issuer: 'GAZEX2USUBMMWFRZFS77VDJYXUFLXI4ZGFPWX6TBNZCSTEQWNLFZMXFF', 
+         amount: 1, 
+         memo_type: 'TEXT', //取值见stellar的api文档
+         memo: '12345'
        }, function(response){
            if(response.code === 'fail'){
              console.log('error:' + response.message)  
