@@ -4,4 +4,4 @@ firefly examples
 
 ## dapp examples
 
-- [example_zh_cn](https://fchainio.github.io/firefly-examples/exmaple_zh_cn.html)
+- [中文示例](https://fchainio.github.io/firefly-examples/dapp/example_zh_cn.html)
