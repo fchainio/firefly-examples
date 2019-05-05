@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-
+import Prism from 'prismjs'
+// Prism.highlightAll()
 Vue.config.productionTip = false
 
 new Vue({
