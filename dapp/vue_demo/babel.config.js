@@ -5,7 +5,7 @@ module.exports = {
   "plugins": [[
     "prismjs",
     {
-    "languages": ["javascript"],
+    "languages": ["javascript","bash","markup"],
     "plugins": ["copy-to-clipboard","highlight-keywords","show-language"],
     "theme": "default",
     "css": true
