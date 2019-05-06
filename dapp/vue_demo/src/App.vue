@@ -2,7 +2,7 @@
   <div id="app">
       <img class='logo' src="@/assets/logo.png" alt="">
         <h1 class='index_t_h1'>FireFly Wallet DApp Demo</h1>
-        <p class='index_t_p'>FireFly Wallet DApp DemoFireFly Wallet DApp Demo FireFly Wallet DApp Demo</p>
+        
     <HelloWorld/>
   </div>
 </template>

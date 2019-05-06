@@ -1,6 +1,21 @@
 <template>
   <div class="demo">
     <code-section>
+      <div slot="title">0. Install</div>
+      <div slot="code">
+        <h2 class="title">With a bundler</h2>
+        <div v-html="npminstall"></div>
+        or
+        <div v-html="yarninstall"></div>
+        <hr>
+        <h2 class="title">In browser</h2>       
+        <div v-html="browser"></div>
+        
+      </div>
+      <div slot="result">Congratulations!</div>
+    </code-section>
+
+    <code-section>
       <div slot="title">1. Initialize</div>
 
       <pre slot="code"><code class="language-js">import { FireFlyWallet } from 'fireflywallet-api';
@@ -43,25 +58,25 @@ FFWProxy.platform</code></pre>
 
     <code-section>
       <div slot="title">4. Get current account ID</div>
-      <pre slot="code"><code class="language-js">FFWProxy.getAccountId().then(accountid=>{
+      <pre slot="code"><code class="language-js">FFWProxy.getAccountID().then(accountid=>{
   console.log(accountid);
 }).catch(err=>{
   console.error(err)
 })
 //Or
-FFWProxy.accountId</code></pre>
+FFWProxy.accountID</code></pre>
       <div slot="result">{{accountid}}</div>
     </code-section>
 
     <code-section>
       <div slot="title">5. Get the UUID of device</div>
-      <pre slot="code"><code class="language-js">FFWProxy.getUuid().then(uuid=>{
+      <pre slot="code"><code class="language-js">FFWProxy.getUUID().then(uuid=>{
   console.log(`uuid=${uuid}`);
 }).catch(err=>{
   console.error(err);
 })
 //Or
-FFWProxy.uuid</code></pre>
+FFWProxy.UUID</code></pre>
       <div slot="result">
         <span v-if="uuid">uuid={{uuid}}</span>
       </div>
@@ -79,20 +94,32 @@ FFWProxy.locale</code></pre>
       <div slot="result">{{locale?'locale='+locale:''}}</div>
     </code-section>
 
-    <code-section>
-      <div slot="title">7. Get contacts</div>
-      <pre slot="code"><code class="language-js">FFWProxy.getContacts().then(contacts=>{
-  console.log(contacts);
+     <code-section>
+      <div slot="title">7. Get current Horizon instance</div>
+      <pre slot="code"><code class="language-js">FFWProxy.getHorizonUrl().then(horizonUrl=>{
+  console.log(horizonUrl);
 }).catch(err=>{
   console.error(err)
 })
 //Or
-FFWProxy.contacts</code></pre>
-      <div slot="result">{{contacts}}</div>
+FFWProxy.horizonUrl</code></pre>
+      <div slot="result">{{horizonUrl}}</div>
     </code-section>
 
     <code-section>
-      <div slot="title">8. Get current balances</div>
+      <div slot="title">8. Get current network passphrase</div>
+      <pre slot="code"><code class="language-js">FFWProxy.getNetwork().then(network=>{
+  console.log(network);
+}).catch(err=>{
+  console.error(err)
+})
+//Or
+FFWProxy.network</code></pre>
+      <div slot="result">{{network}}</div>
+    </code-section>
+
+    <code-section>
+      <div slot="title">9. Get current balances</div>
       <pre slot="code"><code class="language-js">FFWProxy.getBalances().then(balances=>{
   console.log(balances);
 }).catch(err=>{
@@ -105,8 +132,8 @@ FFWProxy.contacts</code></pre>
     </code-section>
 
     <code-section>
-      <div slot="title">9. Sign data (for authentication),
-        </br><sub>* data must be a JSON format string.</sub></div>
+      <div slot="title">10. Sign data (for authentication),
+        <br><sub>* data must be a JSON format string.</sub></div>
       <pre slot="code"><code class="language-js">let data = { accountid: this.accountid, time: new Date().getTime() }
 data = JSON.stringify(data);
 console.log(`data:${data}`)
@@ -129,7 +156,7 @@ FFWProxy.sign(data).then(result=>{
     </code-section>
 
     <code-section>
-      <div slot="title">10. Payment</div>
+      <div slot="title">11. Payment</div>
       <pre slot="code"><code class="language-js">FFWProxy.pay({
   destination: 'GCKKUWHT3ILQWWKQ3MUOCAC7LRJNLCOES7SEI6TCQVGZD4GCULO2PGNU',
   //code: 'XFF',
@@ -152,7 +179,7 @@ FFWProxy.sign(data).then(result=>{
     </code-section>
 
     <code-section>
-      <div slot="title">11. Path Payment</div>
+      <div slot="title">12. Path Payment</div>
       <pre slot="code"><code class="language-js">FFWProxy.pathPayment({
   destination: 'GCKKUWHT3ILQWWKQ3MUOCAC7LRJNLCOES7SEI6TCQVGZD4GCULO2PGNU',
   code: 'XFF',
@@ -174,7 +201,7 @@ FFWProxy.sign(data).then(result=>{
     </code-section>
 
     <code-section>
-      <div slot="title">12. Change Trust</div>
+      <div slot="title">13. Change Trust</div>
       <pre slot="code"><code class="language-js">let code = 'XFF';
 let issuer = 'GAZEX2USUBMMWFRZFS77VDJYXUFLXI4ZGFPWX6TBNZCSTEQWNLFZMXFF';
 FFWProxy.trust(code,issuer)
@@ -192,7 +219,7 @@ FFWProxy.trust(code,issuer)
     </code-section>
 
     <code-section>
-      <div slot="title">13. Sign XDR envelope</div>
+      <div slot="title">14. Sign XDR envelope</div>
       <pre slot="code"><code class="language-js">let xdr = 'AAAAAEpng8wi7nIqz02/1bmC4I5jzz763WoadKIWy7M5MVc3AAAAZACHjkkAAAABAAAAAAAAAAAAAAABAAAAAAAAAAoAAAALaG9tZV9kb21haW4AAAAAAQAAABBodHRwOi8vZmNoYWluLmlvAAAAAAAAAAA='
 FFWProxy.signXDR(xdr,"sign XDR").then(data=>{
     console.log(`signed XDR:${data}`)
@@ -213,7 +240,7 @@ FFWProxy.signXDR(xdr,"sign XDR").then(data=>{
     </code-section>
 
     <code-section>
-      <div slot="title">14. QRCode scan</div>
+      <div slot="title">15. QRCode scan</div>
       <pre slot="code"><code class="language-js">FFWProxy.scan().then(data=>{
   console.log(`reslut:${data}`)
 })
@@ -229,7 +256,7 @@ FFWProxy.signXDR(xdr,"sign XDR").then(data=>{
     </code-section>
 
     <code-section>
-      <div slot="title">15. Social share</div>
+      <div slot="title">16. Social share</div>
       <pre slot="code"><code class="language-js">let options = {
   message: 'share pictures',
   files: ['base64 format image content']
@@ -247,6 +274,19 @@ FFWProxy.share(options).then(data=>{
         <span v-if="shareResult">Share successful</span>
       </div>
     </code-section>
+
+    <code-section>
+      <div slot="title">17. Get Original object</div>
+      <pre slot="code"><code class="language-js">FFWProxy.getOrigin().then(FFW=>{
+  console.log(FFW);
+}).catch(err=>{
+  console.error(err)
+})
+//Or
+FFWProxy.origin</code></pre>
+      <div slot="result">{{origin}}</div>
+    </code-section>
+
   </div>
 </template>
 
@@ -255,6 +295,7 @@ FFWProxy.share(options).then(data=>{
     import {
         FireFlyWallet
     } from "fireflywallet-api";
+    import Prism from 'prismjs'
     const FFWProxy = new FireFlyWallet();
 
     export default {
@@ -267,7 +308,8 @@ FFWProxy.share(options).then(data=>{
                 version: null,
                 platform: null,
                 accountid: null,
-                contacts: [],
+                network: null,
+                horizonUrl: null,
                 uuid: null,
                 locale: null,
                 balances: [],
@@ -280,20 +322,40 @@ FFWProxy.share(options).then(data=>{
                 xdr: null,
                 xdrresult: null,
                 scanResult: null,
-                shareResult: null
+                shareResult: null,
+
+                origin: null,
+                
+                install10 : 'npm install fireflywallet-api --save',
+                install11: 'yarn add fireflywallet-api',
+                install12:  '<script src="path\\to\\dist\\fireflywallet.min.js"><\/script>',
+               
             };
         },
-        mounted() {
+        computed:{
+          npminstall:function(){
+              return Prism.highlight(this.install10, Prism.languages.shell, 'shell')
+          },
+          yarninstall:function(){
+              return Prism.highlight(this.install11, Prism.languages.shell, 'shell')
+          },
+          browser:function(){
+              return Prism.highlight(this.install12, Prism.languages.markup, 'markup')
+          }
+        },
+        mounted() {         
             FFWProxy.ready()
                 .then(() => {
                     console.log("Ready to work!");
                     this.ready = true;
                     this.getVersion();
                     this.getPlatform();
-                    this.getAccountId();
-                    this.getUuid();
+                    this.getAccountID();
+                    this.getUUID();
                     this.getLocale();
-                    this.getContacts();
+                    this.getNetwork();
+                    this.getHorizonUrl();
+                    this.getOrigin();
                 })
                 .catch(err => {
                     console.error(err);
@@ -318,17 +380,18 @@ FFWProxy.share(options).then(data=>{
                         console.error(err);
                     });
             },
-            getAccountId() {
-                FFWProxy.getAccountId()
+            getAccountID() {
+                FFWProxy.getAccountID()
                     .then(accountid => {
                         this.accountid = accountid;
                     })
                     .catch(err => {
                         console.error(err);
+                        alert(err)
                     });
             },
-            getUuid() {
-                FFWProxy.getUuid()
+            getUUID() {
+                FFWProxy.getUUID()
                     .then(uuid => {
                         this.uuid = uuid;
                     })
@@ -345,13 +408,20 @@ FFWProxy.share(options).then(data=>{
                         console.error(err);
                     });
             },
-            getContacts() {
-                FFWProxy.getContacts()
-                    .then(contacts => {
-                        this.contacts = contacts;
-                    })
-                    .catch(err => {
-                        console.error(err);
+            getNetwork() {
+                FFWProxy.getNetwork()
+                    .then(network=>{
+                      this.network = network;
+                    }).catch(err=>{
+                      console.error(err)
+                    });
+            },
+            getHorizonUrl() {
+                FFWProxy.getHorizonUrl()
+                    .then(horizonUrl=>{
+                      this.horizonUrl = horizonUrl;
+                    }).catch(err=>{
+                      console.error(err)
                     });
             },
             getBalances() {
@@ -462,6 +532,13 @@ FFWProxy.share(options).then(data=>{
                     .catch(err => {
                         console.error(err);
                     });
+            },
+            getOrigin(){
+              FFWProxy.getOrigin().then(FFW => {
+                this.origin = FFW
+              }).catch(err => {
+                console.error(err)
+              })
             }
         }
     };
@@ -474,13 +551,9 @@ FFWProxy.share(options).then(data=>{
         background: #21ce90;
         color: #ffffff;
         border-width: 0px;
-        /* 边框宽度 */
         border-radius: 3px;
-        /* 边框半径 */
         cursor: pointer;
-        /* 鼠标移入按钮范围时出现手势 */
         outline: none;
-        /* 不显示轮廓线 */
     }
     
     .primary-btn:active {
