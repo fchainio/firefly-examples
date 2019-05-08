@@ -10,7 +10,7 @@
   "dependencies": {
     "babel-plugin-prismjs": "^1.0.2",
     "core-js": "^2.6.5",
-    "fireflywallet-api": "^1.0.1",
+    "fireflywallet-api": "^1.0.2",
     "lib-flexible": "^0.3.2",
     "prismjs": "^1.16.0",
     "vconsole": "^3.3.0",

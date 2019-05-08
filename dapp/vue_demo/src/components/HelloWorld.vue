@@ -18,7 +18,7 @@
     <code-section>
       <div slot="title">1. Initialize</div>
 
-      <pre slot="code"><code class="language-js">import { FireFlyWallet } from 'fireflywallet-api';
+      <pre slot="code"><code class="language-js">import FireFlyWallet from 'fireflywallet-api';
 const appname = "demoApp";//App name, optional
 const appid = "demoID";//App ID, optional
 const FFWProxy = new FireFlyWallet(appname,appid);
@@ -292,9 +292,7 @@ FFWProxy.origin</code></pre>
 
 <script>
     import CodeSection from "./CodeSection";
-    import {
-        FireFlyWallet
-    } from "fireflywallet-api";
+    import FireFlyWallet from "fireflywallet-api";
     import Prism from 'prismjs'
     const FFWProxy = new FireFlyWallet();
 
