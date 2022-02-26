@@ -12,7 +12,7 @@
     "core-js": "^2.6.5",
     "fireflywallet-api": "^1.0.2",
     "lib-flexible": "^0.3.2",
-    "prismjs": "^1.16.0",
+    "prismjs": "^1.27.0",
     "vconsole": "^3.3.0",
     "vue": "^2.6.6"
   },
